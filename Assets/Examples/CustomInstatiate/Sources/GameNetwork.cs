@@ -13,7 +13,6 @@ namespace Example.Game
   public class GameNetwork : MonoBehaviour, IRagonListener
   {
     [SerializeField] private GameObject CharacterPrefab;
-    [SerializeField] private GameObject EnemyPrefab;
 
     private void OnDestroy()
     {
