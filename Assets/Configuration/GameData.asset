@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 400fadb9c3f5490a97eb2b0e6505a2c8, type: 3}
+  m_Name: GameData
+  m_EditorClassIdentifier: 
+  healthBarTemplate: {fileID: 3020091043814659773, guid: c10524ade17d42b7a6b04cc227f4d592, type: 3}
+  damageTextTemplate: {fileID: 4826186450932703503, guid: 288486bd306e9074086a746c1e7c71c4, type: 3}

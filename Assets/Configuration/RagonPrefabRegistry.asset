@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a207708f05453c8b2b4ed96d45075c, type: 3}
+  m_Name: RagonPrefabRegistry
+  m_EditorClassIdentifier: 
+  _prefabs:
+  - EntityType: 1
+    Prefab: {fileID: 3056189362420831426, guid: d580001e6a35a4249b0e59eb8d71a1b4, type: 3}
+  - EntityType: 2
+    Prefab: {fileID: 196570303801745919, guid: e6032557e67e14150a172854edc6087a, type: 3}
