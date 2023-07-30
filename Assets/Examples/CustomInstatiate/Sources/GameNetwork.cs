@@ -52,7 +52,7 @@ namespace Example.Game
       // for (var y = 0; y < 4; y++)
       {
         var payload = new CharacterPayload() { X = 2.0f, Z = 2.0f };
-        RagonNetwork.Create(CharacterPrefab);
+        RagonNetwork.Create(CharacterPrefab, payload);
       }
     }
 
