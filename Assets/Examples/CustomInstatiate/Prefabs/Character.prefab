@@ -266,7 +266,7 @@ MonoBehaviour:
     Max: 10
     Precision: 0.01
     Bits: 10
-  bits: 44
+  bits: 28
 --- !u!114 &4740322054461830501
 MonoBehaviour:
   m_ObjectHideFlags: 0

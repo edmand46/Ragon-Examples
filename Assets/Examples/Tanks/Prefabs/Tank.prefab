@@ -148,10 +148,11 @@ MonoBehaviour:
   autoDestroy: 1
   staticId: 0
   entityId: 0
-  type: 0
+  type: 2
   hasAuthority: 0
   attached: 0
-  _behaviours: []
+  _behaviours:
+  - {fileID: 114654712548978148}
 --- !u!1 &4730779867780281009
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,4 +16,4 @@ MonoBehaviour:
   - EntityType: 1
     Prefab: {fileID: 3056189362420831426, guid: d580001e6a35a4249b0e59eb8d71a1b4, type: 3}
   - EntityType: 2
-    Prefab: {fileID: 196570303801745919, guid: e6032557e67e14150a172854edc6087a, type: 3}
+    Prefab: {fileID: 1916082411674582, guid: 6f43bf5488a7443d19ab2a83c6b91f35, type: 3}
