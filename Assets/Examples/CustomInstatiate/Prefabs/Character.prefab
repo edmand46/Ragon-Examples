@@ -23,6 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486013942091695040}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -30,7 +31,6 @@ Transform:
   m_Children:
   - {fileID: 6052361473235819796}
   m_Father: {fileID: 6821540950749868300}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1716167627917929341
 GameObject:
@@ -58,13 +58,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716167627917929341}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2203080724889790159}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8061247223032072806
 MeshFilter:
@@ -163,6 +163,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3056189362420831426}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -171,7 +172,6 @@ Transform:
   - {fileID: 2203080724889790159}
   - {fileID: 696280735420176677}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5594557272911513608
 MonoBehaviour:
@@ -229,24 +229,8 @@ MonoBehaviour:
     Precision: 0.1
     Bits: 14
   rotationReplication: 1
-  rotationAxis: 5
   rotationInterpolationSpeed: 15
-  rotationThreshold: 0.1
-  rotationX:
-    Min: -512
-    Max: 512
-    Precision: 0.1
-    Bits: 14
-  rotationY:
-    Min: 0
-    Max: 360
-    Precision: 0.01
-    Bits: 16
-  rotationZ:
-    Min: -512
-    Max: 512
-    Precision: 0.1
-    Bits: 14
+  rotationThreshold: 0.01
   scaleReplication: 0
   scaleAxis: 0
   scaleInterpolationSpeed: 15
@@ -266,7 +250,7 @@ MonoBehaviour:
     Max: 10
     Precision: 0.01
     Bits: 10
-  bits: 28
+  bits: 60
 --- !u!114 &4740322054461830501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,11 +288,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3461939036942282864}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6821540950749868300}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

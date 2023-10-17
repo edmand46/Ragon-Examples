@@ -40,11 +40,15 @@ namespace Mirror.Examples.Tanks
       
       Entity.OnEvent<FireEvent>(OnFire);
       
+      var subscription = Entity.OnEvent<FireEvent>(OnFire);
+      // subscription.Dispose();
+      
       health.Changed += () => healthBar.text = new string('-', health.Value);
     }
 
     private void OnFire(RagonPlayer invoker, FireEvent evnt)
     { 
+      Debug.Log("Fire");
       Instantiate(projectilePrefab, projectileMount.position, projectileMount.rotation);
       animator.SetTrigger("Shoot");
     }

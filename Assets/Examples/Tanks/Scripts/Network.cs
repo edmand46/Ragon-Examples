@@ -10,16 +10,18 @@ using Random = UnityEngine.Random;
 
 namespace Tanks.Scripts
 {
-  public class Network : MonoBehaviour, IRagonListener
+  public class Network : MonoBehaviour, IRagonListener, IRagonSceneRequestListener
   {
     [SerializeField] private GameObject _tankPrefab;
     [SerializeField] private List<Transform> _spawnPoints;
 
     private void Start()
     {
+      RagonNetwork.AutoSceneLoading = false;
       RagonNetwork.Event.Register<FireEvent>();
        
-      RagonNetwork.AddListener(this);
+      RagonNetwork.AddListener((IRagonListener)this);
+      RagonNetwork.AddListener((IRagonSceneRequestListener)this);
       RagonNetwork.Connect();
     }
 
@@ -31,6 +33,8 @@ namespace Tanks.Scripts
 
     public void OnJoined(RagonClient client)
     {
+      Debug.Log("Joined!");
+      
       var randomPoint = _spawnPoints[Random.Range(0, _spawnPoints.Count - 1)];
       RagonNetwork.Create(_tankPrefab, new TankPayload() { Position = randomPoint.position });
     }
@@ -65,8 +69,6 @@ namespace Tanks.Scripts
 
     public void OnLevel(RagonClient client, string sceneName)
     {
-      Debug.Log("Level " + sceneName);
-      RagonNetwork.Room.SceneLoaded();
     }
     
 
@@ -78,6 +80,17 @@ namespace Tanks.Scripts
     public void OnLeft(RagonClient client)
     {
    
+    }
+
+    public void OnSceneLoaded(RagonClient client)
+    {
+      Debug.Log("Level Loaded");
+    }
+
+    public void OnRequestScene(RagonClient client, string sceneName)
+    {
+      Debug.Log("Request Level" + sceneName);
+      client.Room.SceneLoaded();
     }
   }
 }

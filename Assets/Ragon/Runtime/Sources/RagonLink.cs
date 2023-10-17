@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Ragon.Protocol;
@@ -39,7 +40,7 @@ namespace Ragon.Client.Unity
     [SerializeField, ReadOnly] private RagonBehaviour[] _behaviours;
 
     private RagonProperty[] _properties;
-
+    
     public void SetStatic(ushort sceneId)
     {
       staticId = sceneId;

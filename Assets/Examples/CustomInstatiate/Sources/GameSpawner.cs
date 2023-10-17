@@ -12,8 +12,11 @@ namespace Examples.Sources
       if (prefab.TryGetComponent<Character>(out _))
       {
         var characterPayload = entity.GetAttachPayload<CharacterPayload>();
+        Debug.Log(characterPayload.X + " - " + characterPayload.Z);
+        
         var characterPosition = new Vector3(characterPayload.X, 0, characterPayload.Z);
         var characterGameObject = Object.Instantiate(prefab, characterPosition , Quaternion.identity);
+
         return characterGameObject;
       }
 

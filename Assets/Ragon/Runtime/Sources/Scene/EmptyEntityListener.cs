@@ -14,26 +14,13 @@
  * limitations under the License.
  */
 
-using System.Collections.Generic;
-
-namespace Ragon.Client.Unity
+namespace Ragon.Client
 {
-    public class LimitedQueue<T> : Queue<T>
+  public class EmptyEntityListener: IRagonEntityListener
+  {
+    public void OnEntityCreated(RagonEntity entity)
     {
-        public int Limit { get; set; }
-
-        public LimitedQueue(int limit) : base(limit)
-        {
-            Limit = limit;
-        }
-
-        public new void Enqueue(T item)
-        {
-            while (Count >= Limit)
-            {
-                Dequeue();
-            }
-            base.Enqueue(item);
-        }
+      
     }
+  }
 }

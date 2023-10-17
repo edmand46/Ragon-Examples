@@ -13,22 +13,20 @@ namespace Examples.Sources
     public override void OnAttachedEntity()
     {
       Debug.Log("Player attached!");
-      Entity.OnEvent<ChangeOwnerEvent>(RequestChangeOwner);
+      Entity.OnEvent<ChatMessageEvent>(OnChatMessage);
     }
 
-    public override void OnOwnershipChanged(RagonPlayer player)
+    private void OnChatMessage(RagonPlayer arg1, ChatMessageEvent chatMessage)
     {
-      Debug.Log("I'm Owner!");
-    }
-
-    private void RequestChangeOwner(RagonPlayer requester, ChangeOwnerEvent @event)
-    {
-      RagonNetwork.Transfer(gameObject, requester);
+      Debug.Log(chatMessage.Text);
     }
 
     public override void OnUpdateEntity()
     {
       var direction = Vector3.zero;
+
+      if (Input.GetKeyDown(KeyCode.Space))
+        Entity.ReplicateEvent(new ChatMessageEvent() { Text = "Test 1" }, RagonTarget.Owner);
 
       if (Input.GetKey(KeyCode.W))
         direction += Vector3.forward;
@@ -42,13 +40,13 @@ namespace Examples.Sources
       if (Input.GetKey(KeyCode.A))
         direction -= Vector3.right;
 
-      transform.position += direction * Time.deltaTime;
-    }
+      if (Input.GetKey(KeyCode.Q))
+        transform.Rotate(0, 30 * Time.deltaTime, 0);
 
-    public override void OnUpdateProxy()
-    {
-      if (Input.GetKeyDown(KeyCode.Space))
-        Entity.ReplicateEvent(new ChangeOwnerEvent(), RagonTarget.Owner);
+      if (Input.GetKey(KeyCode.E))
+        transform.Rotate(0, -30 * Time.deltaTime, 0);
+
+      transform.position += direction * Time.deltaTime;
     }
   }
 }

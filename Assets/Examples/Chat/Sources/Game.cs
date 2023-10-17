@@ -75,4 +75,9 @@ public class Game : MonoBehaviour, IRagonListener
   {
     
   }
+
+  public void OnSceneLoaded(RagonClient client)
+  {
+    
+  }
 }

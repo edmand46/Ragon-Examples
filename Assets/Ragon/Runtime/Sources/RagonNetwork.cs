@@ -14,42 +14,56 @@
  * limitations under the License.
  */
 
-using System.Collections.Generic;
+using Ragon.Client.Utility;
 using Ragon.Protocol;
-using TMPro;
 using UnityEngine;
 
 namespace Ragon.Client.Unity
 {
   [DefaultExecutionOrder(-1500), DisallowMultipleComponent]
-  public class RagonNetwork : MonoBehaviour, IRagonEntityListener
+  public class RagonNetwork : MonoBehaviour,
+    IRagonEntityListener,
+    IRagonSceneRequestListener
   {
     private static RagonNetwork _instance;
-    private Dictionary<RagonEntity, RagonLink> _links;
+    private RagonLinkFinder _finder;
     private IRagonPrefabSpawner _spawner;
     private RagonClient _networkClient;
+    private bool _sceneLoading = true;
+    private SceneRequest _sceneRequest;
 
     [SerializeField] private RagonConfiguration _configuration;
     [SerializeField] private RagonPrefabRegistry _registry;
 
-    public static bool IsInitialized => _instance != null;
+    public static bool AutoSceneLoading
+    {
+      get => _instance._sceneLoading;
+      set
+      {
+        if (_instance._networkClient.Status != RagonStatus.DISCONNECTED) return;
+
+        _instance._sceneLoading = value;
+      }
+    }
+
     public static RagonConfiguration Configuration => _instance._configuration;
+    public static RagonClient Network => _instance._networkClient;
     public static RagonStatus Status => _instance._networkClient.Status;
     public static RagonEventCache Event => _instance._networkClient.Event;
-    public static RagonRoom Room => _instance._networkClient.Room;
     public static RagonSession Session => _instance._networkClient.Session;
-    public static RagonClient Network => _instance._networkClient;
-    
+    public static RagonRoom Room => _instance._networkClient.Room;
+
     private void Awake()
     {
       _instance = this;
-      
+      _sceneLoading = true;
+
       DontDestroyOnLoad(gameObject);
-      
+
       var defaultLogger = new RagonUnityLogger();
       RagonLog.Set(defaultLogger);
-  
-      _links = new Dictionary<RagonEntity, RagonLink>();
+
+      _finder = new RagonLinkFinder();
       _registry.Cache();
 
       switch (_configuration.Type)
@@ -73,8 +87,19 @@ namespace Ragon.Client.Unity
           break;
         }
       }
-      
-      Configure(new RagonSceneCollector(), new RagonPrefabSpawner());
+
+      var collector = new RagonSceneCollector(_finder);
+      var spawner = new RagonPrefabSpawner();
+
+      Configure(collector, spawner);
+    }
+
+
+    public void OnRequestScene(RagonClient client, string sceneName)
+    {
+      _sceneRequest?.Dispose();
+      _sceneRequest = new SceneRequest(client.Room);
+      _sceneRequest.OnRequestScene(client, sceneName);
     }
 
     public static void Configure(IRagonSceneCollector collector, IRagonPrefabSpawner spawner)
@@ -90,7 +115,7 @@ namespace Ragon.Client.Unity
 
       if (spawner != null)
         _instance._spawner = spawner;
-      
+
       _instance._networkClient.Configure(_instance);
     }
 
@@ -123,54 +148,67 @@ namespace Ragon.Client.Unity
       entity.Attached += link.OnAttached;
       entity.Detached += link.OnDetached;
       entity.OwnershipChanged += link.OnOwnershipChanged;
-
-      _instance._links.Add(entity, link);
     }
-
 
     public static void Connect()
     {
       var configuration = _instance._configuration;
-      _instance._networkClient.Connect(configuration.Address, configuration.Port, configuration.Protocol);
+      var client = _instance._networkClient;
+
+      if (_instance._sceneLoading)
+      {
+        AddListener(_instance);
+      }
+
+      client.Connect(configuration.Address, configuration.Port, configuration.Protocol);
     }
 
     public static void Disconnect()
     {
-      _instance._networkClient.Disconnect();
+      var client = _instance._networkClient;
+      client.Disconnect();
     }
 
     public static GameObject Create(GameObject prefab, IRagonPayload spawnPayload = null)
     {
+      if (_instance._networkClient.Status != RagonStatus.ROOM)
+      {
+        RagonLog.Warn("You are not in room!");
+        return null;
+      }
+
       if (prefab.TryGetComponent<RagonLink>(out var prefabLink))
       {
+        var client = _instance._networkClient;
+        var local = client.Room.Local;
         var spawner = _instance._spawner;
         var entity = new RagonEntity(prefabLink.Type, prefabLink.StaticID);
+        var payload = RagonPayload.Empty;
         
-        RagonPayload payload = null;
         if (spawnPayload != null)
         {
           var buffer = new RagonBuffer();
           spawnPayload.Serialize(buffer);
-          
+
           payload = new RagonPayload(buffer.WriteOffset);
           payload.Read(buffer);
-          
-          entity.AttachPayload(payload);
         }
-
+        
+        entity.Prepare(client, 0, prefabLink.Type, true, local, payload);
+        
         var go = spawner.InstantiateEntityGameObject(entity, prefab);
         var link = go.GetComponent<RagonLink>();
         var properties = link.Discovery();
-        
+
         foreach (var property in properties)
           entity.State.AddProperty(property);
-        
+
         entity.Attached += link.OnAttached;
         entity.Detached += link.OnDetached;
         entity.OwnershipChanged += link.OnOwnershipChanged;
 
         _instance._networkClient.Room.CreateEntity(entity, payload);
-        _instance._links.Add(entity, link);
+        _instance._finder.Track(entity, link);
 
         return go;
       }
@@ -185,14 +223,23 @@ namespace Ragon.Client.Unity
         link = null;
         return false;
       }
-      
-      return _instance._links.TryGetValue(entity, out link);
+
+      return _instance._finder.Find(entity, out link);
     }
 
     public static void Transfer(GameObject go, RagonPlayer player)
     {
       if (!go.TryGetComponent<RagonLink>(out var link))
+      {
+        RagonLog.Error($"{go.name} has not RagonLink component!");
         return;
+      }
+
+      if (!link.Entity.HasAuthority)
+      {
+        RagonLog.Error($"{go.name} have not authority!");
+        return;
+      }
 
       var entity = link.Entity;
       _instance._networkClient.Room.TransferEntity(entity, player);
@@ -202,13 +249,14 @@ namespace Ragon.Client.Unity
     {
       if (!go.TryGetComponent<RagonLink>(out var link))
       {
+        RagonLog.Error($"{go.name} has not RagonLink component!");
         return;
       }
 
       var entity = link.Entity;
-      
+
       _instance._networkClient.Room.DestroyEntity(entity);
-      _instance._links.Remove(entity);
+      _instance._finder.Untrack(entity);
     }
 
     public static void AddListener(IRagonListener listener) => _instance._networkClient.AddListener(listener);
@@ -223,13 +271,17 @@ namespace Ragon.Client.Unity
 
     public static void AddListener(IRagonLeftListener listener) => _instance._networkClient.AddListener(listener);
 
-    public static void AddListener(IRagonLevelListener listener) => _instance._networkClient.AddListener(listener);
+    public static void AddListener(IRagonSceneListener listener) => _instance._networkClient.AddListener(listener);
+
+    public static void AddListener(IRagonSceneRequestListener listener) => _instance._networkClient.AddListener(listener);
 
     public static void AddListener(IRagonOwnershipChangedListener listener) => _instance._networkClient.AddListener(listener);
 
     public static void AddListener(IRagonPlayerJoinListener listener) => _instance._networkClient.AddListener(listener);
 
     public static void AddListener(IRagonPlayerLeftListener listener) => _instance._networkClient.AddListener(listener);
+
+    public static void AddListener(IRagonDataListener listener) => _instance._networkClient.AddListener(listener);
 
     public static void RemoveListener(IRagonListener listener) => _instance._networkClient.RemoveListener(listener);
 
@@ -243,12 +295,16 @@ namespace Ragon.Client.Unity
 
     public static void RemoveListener(IRagonLeftListener listener) => _instance._networkClient.RemoveListener(listener);
 
-    public static void RemoveListener(IRagonLevelListener listener) => _instance._networkClient.RemoveListener(listener);
+    public static void RemoveListener(IRagonSceneListener listener) => _instance._networkClient.RemoveListener(listener);
+
+    public static void RemoveListener(IRagonSceneRequestListener listener) => _instance._networkClient.RemoveListener(listener);
 
     public static void RemoveListener(IRagonOwnershipChangedListener listener) => _instance._networkClient.RemoveListener(listener);
 
     public static void RemoveListener(IRagonPlayerJoinListener listener) => _instance._networkClient.RemoveListener(listener);
 
     public static void RemoveListener(IRagonPlayerLeftListener listener) => _instance._networkClient.RemoveListener(listener);
+
+    public static void RemoveListener(IRagonDataListener listener) => _instance._networkClient.RemoveListener(listener);
   }
 }
