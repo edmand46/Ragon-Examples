@@ -190,6 +190,7 @@ MonoBehaviour:
   autoDestroy: 1
   staticId: 0
   entityId: 0
+  prefabId: 82a33331-89bb-47b2-a43e-7bfdcc310c7d
   type: 1
   hasAuthority: 0
   attached: 0

@@ -5,7 +5,6 @@ using Ragon.Examples.Tanks;
 using Tanks.Scripts.Events;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace Mirror.Examples.Tanks
 {

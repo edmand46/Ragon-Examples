@@ -17,8 +17,9 @@ namespace Examples.SceneEntity
     private void Start()
     {
       Application.targetFrameRate = 60;
-
+      
       RagonNetwork.Event.Register<SceneEntityEvent>();
+      
       RagonNetwork.AddListener((IRagonListener)this);
       RagonNetwork.AddListener((IRagonDataListener)this);
       RagonNetwork.Connect();
@@ -28,7 +29,8 @@ namespace Examples.SceneEntity
     {
       if (Input.GetKeyDown(KeyCode.Space))
       {
-        RagonNetwork.Room.ReplicateData(new byte[] { 100, 255, 255 });
+        
+        // RagonNetwork.Room.ReplicateData(new byte[] { 100, 255, 255 });
       }
     }
 
@@ -85,7 +87,7 @@ namespace Examples.SceneEntity
 
     public void OnData(RagonPlayer player, byte[] data)
     {
-      Debug.Log(string.Join(",", data));
+      // Debug.Log(string.Join(",", data));
     }
   }
 }

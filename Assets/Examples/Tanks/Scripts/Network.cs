@@ -36,7 +36,7 @@ namespace Tanks.Scripts
       Debug.Log("Joined!");
       
       var randomPoint = _spawnPoints[Random.Range(0, _spawnPoints.Count - 1)];
-      RagonNetwork.Create(_tankPrefab, new TankPayload() { Position = randomPoint.position });
+      RagonNetwork.Create(_tankPrefab, new TankPayload() { Position = Vector3.one });
     }
 
     public void OnFailed(RagonClient client, string message)
