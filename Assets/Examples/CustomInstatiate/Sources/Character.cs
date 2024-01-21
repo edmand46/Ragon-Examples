@@ -8,7 +8,7 @@ namespace Examples.Sources
 {
   public class Character : RagonBehaviour
   {
-    [SerializeField] private RagonFloat _health = new RagonFloat(true);
+    [SerializeField] private RagonFloat _health = new RagonFloat(0.0f);
 
     public override void OnAttachedEntity()
     {

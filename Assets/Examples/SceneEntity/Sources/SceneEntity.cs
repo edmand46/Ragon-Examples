@@ -8,8 +8,8 @@ namespace Examples.SceneEntity
 {
   public class SceneEntity : RagonBehaviour
   {
-    [SerializeField] private RagonFloat _health = new RagonFloat(true, 0);
-    [SerializeField] private RagonString _name = new RagonString(32, true, 0);
+    [SerializeField] private RagonFloat _health = new RagonFloat(0.0f);
+    [SerializeField] private RagonString _name = new RagonString("");
     
     private IDisposable _sub;
     
