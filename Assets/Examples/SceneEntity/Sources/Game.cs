@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Ragon.Client;
 using Ragon.Client.Unity;
 using Ragon.Protocol;
@@ -19,7 +20,7 @@ namespace Examples.SceneEntity
       Application.targetFrameRate = 60;
       
       RagonNetwork.Event.Register<SceneEntityEvent>();
-      
+      RagonNetwork.AutoSceneLoading = false;
       RagonNetwork.AddListener((IRagonListener)this);
       RagonNetwork.AddListener((IRagonDataListener)this);
       RagonNetwork.Connect();
@@ -29,8 +30,7 @@ namespace Examples.SceneEntity
     {
       if (Input.GetKeyDown(KeyCode.Space))
       {
-        
-        // RagonNetwork.Room.ReplicateData(new byte[] { 100, 255, 255 });
+        RagonNetwork.Room.UserData["color"] = new byte[] { 100, 200, 250 };
       }
     }
 
@@ -51,6 +51,7 @@ namespace Examples.SceneEntity
 
     public void OnJoined(RagonClient network)
     {
+      Debug.Log($"Room Property [\"color\"] {string.Join(", ", RagonNetwork.Room.UserData["color"])}");
     }
 
     public void OnFailed(RagonClient network, string message)
@@ -85,9 +86,38 @@ namespace Examples.SceneEntity
     {
     }
 
-    public void OnData(RagonPlayer player, byte[] data)
+    public void OnData(RagonClient client, RagonPlayer player, byte[] data)
     {
-      // Debug.Log(string.Join(",", data));
+    }
+
+    public void OnRoomListUpdate(RagonClient client, IReadOnlyList<RagonRoomInformation> roomsInfos)
+    {
+      throw new NotImplementedException();
+    }
+
+    public void OnRoomPropertiesUpdated(RagonClient client)
+    {
+      throw new NotImplementedException();
+    }
+
+    public void OnUserDataUpdated(RagonClient client)
+    {
+      
+    }
+
+    public void OnPlayerUserDataUpdated(RagonClient client, RagonPlayer player)
+    {
+      
+    }
+
+    public void OnUserDataUpdated(RagonClient client, IReadOnlyList<string> changes)
+    {
+      
+    }
+
+    public void OnPlayerUserDataUpdated(RagonClient client, RagonPlayer player, IReadOnlyList<string> changes)
+    {
+      
     }
   }
 }

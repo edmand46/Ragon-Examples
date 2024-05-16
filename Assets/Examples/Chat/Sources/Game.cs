@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Ragon.Client;
 using Ragon.Client.Unity;
 using Ragon.Protocol;
@@ -79,5 +80,35 @@ public class Game : MonoBehaviour, IRagonListener
   public void OnSceneLoaded(RagonClient client)
   {
     
+  }
+
+  public void OnRoomListUpdate(RagonClient client, IReadOnlyList<RagonRoomInformation> roomsInfos)
+  {
+    throw new NotImplementedException();
+  }
+
+  public void OnRoomPropertiesUpdated(RagonClient client)
+  {
+    throw new NotImplementedException();
+  }
+
+  public void OnUserDataUpdated(RagonClient client)
+  {
+    throw new NotImplementedException();
+  }
+
+  public void OnPlayerUserDataUpdated(RagonClient client, RagonPlayer player)
+  {
+    throw new NotImplementedException();
+  }
+
+  public void OnUserDataUpdated(RagonClient client, IReadOnlyList<string> changes)
+  {
+    throw new NotImplementedException();
+  }
+
+  public void OnPlayerUserDataUpdated(RagonClient client, RagonPlayer player, IReadOnlyList<string> changes)
+  {
+    throw new NotImplementedException();
   }
 }

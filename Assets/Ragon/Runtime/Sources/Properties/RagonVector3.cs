@@ -53,13 +53,18 @@ namespace Ragon.Client.Unity
     private FloatCompressor _compressorX;
     private FloatCompressor _compressorY;
     private FloatCompressor _compressorZ;
-
+    
+    public RagonVector3(): base(0, false)
+    {
+        
+    }
+    
     public RagonVector3(
       Vector3 value,
       RagonAxis axis = RagonAxis.XYZ,
       float min = -1024.0f,
       float max = 1024.0f,
-      float precision = 0.1f,
+      float precision = 0.01f,
       bool invokeLocal = true,
       int priority = 0
     ) : base(priority, invokeLocal)

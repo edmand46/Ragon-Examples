@@ -6,7 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Examples/SceneEntity/SceneEntityExample.unity
-    guid: b127d66b77d4d486d9960266e50759e1
+    path: Assets/Examples/RoomList/RoomListExample.unity
+    guid: 181d99e89d2764979b0fd501d2fe4389
   m_configObjects: {}
-  m_UseUCBPForAssetBundles: 0

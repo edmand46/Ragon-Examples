@@ -50,7 +50,7 @@ namespace Ragon.Client.Unity
       int value,
       int min = -1000,
       int max = 1000,
-      bool invokeLocal = false,
+      bool invokeLocal = true,
       int priority = 0
     ) : base(priority, invokeLocal)
     {

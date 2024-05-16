@@ -45,13 +45,13 @@ namespace Ragon.Client.Unity
     private FloatCompressor _compressor;
     private float _min;
     private float _max;
-    
+
     public RagonFloat(
       float value,
       float min = -1024.0f,
       float max = 1024.0f,
       float precision = 0.01f,
-      bool invokeLocal = false,
+      bool invokeLocal = true,
       int priority = 0
     ) : base(priority, invokeLocal)
     {

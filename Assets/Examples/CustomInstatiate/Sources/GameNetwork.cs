@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Examples.Sources;
 using Examples.Sources.Events;
 using Examples.Sources.Payload;
@@ -104,6 +105,20 @@ namespace Example.Game
     public void OnRequestScene(RagonClient client, string sceneName)
     {
       client.Room.SceneLoaded();
+    }
+
+    public void OnRoomListUpdate(RagonClient client, IReadOnlyList<RagonRoomInformation> roomsInfos)
+    {
+      
+    }
+    public void OnUserDataUpdated(RagonClient client, IReadOnlyList<string> changes)
+    {
+      
+    }
+
+    public void OnPlayerUserDataUpdated(RagonClient client, RagonPlayer player, IReadOnlyList<string> changes)
+    {
+      
     }
   }
 }
