@@ -1,0 +1,66 @@
+{
+  "player": {
+    "walkSpeed": 6.0,
+    "sprintSpeed": 9.0,
+    "crouchSpeed": 3.0,
+    "accelGround": 12.0,
+    "accelAir": 2.5,
+    "friction": 8.0,
+    "jumpSpeed": 6.5,
+    "gravity": 20.0,
+    "radius": 0.4,
+    "height": 1.8,
+    "maxHp": 100,
+    "respawnSeconds": 5.0
+  },
+  "blocks": [
+    {
+      "id": 1,
+      "name": "stone",
+      "solid": true,
+      "color": 4286611584
+    },
+    {
+      "id": 2,
+      "name": "wood",
+      "solid": true,
+      "color": 4290803840
+    }
+  ],
+  "weapons": [
+    {
+      "id": "rifle",
+      "name": "Rifle",
+      "kind": "hitscan",
+      "damage": 18.0,
+      "interval": 0.1,
+      "auto": true,
+      "magazine": 30,
+      "reserve": 120,
+      "reloadTime": 1.5,
+      "range": 100.0,
+      "spread": 0.01,
+      "pellets": 1,
+      "projectileSpeed": 0.0,
+      "projectileGravity": 0.0,
+      "blastRadius": 0.0
+    },
+    {
+      "id": "rocket",
+      "name": "Rocket",
+      "kind": "projectile",
+      "damage": 90.0,
+      "interval": 0.8,
+      "auto": false,
+      "magazine": 1,
+      "reserve": 12,
+      "reloadTime": 2.0,
+      "range": 100.0,
+      "spread": 0.0,
+      "pellets": 1,
+      "projectileSpeed": 40.0,
+      "projectileGravity": 10.0,
+      "blastRadius": 4.0
+    }
+  ]
+}
