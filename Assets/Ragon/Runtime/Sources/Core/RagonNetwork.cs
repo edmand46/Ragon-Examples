@@ -54,6 +54,7 @@ namespace Ragon.Client.Unity
 
     public static RagonConfiguration Configuration => _instance._configuration;
     public static RagonClient Network => _instance._networkClient;
+    public static bool IsInitialized => _instance != null && _instance._networkClient != null;
     public static RagonStatus Status => _instance._networkClient.Status;
     public static RagonEventCache Event => _instance._networkClient.Event;
     public static RagonSession Session => _instance._networkClient.Session;

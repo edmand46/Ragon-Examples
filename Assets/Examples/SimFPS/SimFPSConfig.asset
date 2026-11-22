@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8afb195b9dd64c72b42c873c669b925b, type: 3}
+  m_Name: SimFPSConfig
+  m_EditorClassIdentifier: 
+  _simScene: framework-arena
+  _tickRate: 30
+  _gameContent: {fileID: 4900000, guid: 5233919b875a430c89bd3d97d8e4f357, type: 3}
+  _playerPrefab: {fileID: 100000, guid: e95504a1452d4d0185431e2d8b554de7, type: 3}
+  _localPlayerPrefab: {fileID: 100000, guid: 70629d9d379a4e9ea053a4bad9379cc4, type: 3}
+  _npcPrefab: {fileID: 0}
+  _projectilePrefabs:
+  - {fileID: 0}
+  - {fileID: 100000, guid: 3049fd52a911409b8e066cd5e52b8853, type: 3}
