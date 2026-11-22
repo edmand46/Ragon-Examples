@@ -19,6 +19,7 @@
 // API:Framework ; OnSimExplosion ; OnSimHit ; OnSimKill
 // WHY:DefaultExecutionOrder(-1400) pumps after RagonNetwork(-1500) and RagonSimPlayerInput(-1450) but before user scripts, so poses are current when gameplay reads them
 // WHY:the local player renders only through PredictionRunner; using PlayerView.RenderAt for the local slot would apply the correction twice
+// WHY:the local pose uses PredictionAlpha (fraction into the prediction tick); RenderState(1.0) advanced only on 30 Hz prediction ticks and stepped visibly at frame rate
 
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace Ragon.Client.Unity
   /// snapshot event queue as plain C# events.
   ///
   /// <para>Nothing here simulates: movement prediction is the framework's, remote poses are
-  /// interpolated from each slot's two retained records, projectiles are drawn from the closed-form
+  /// interpolated from each entity's retained record ring, projectiles are drawn from the closed-form
   /// spawn record, and hp/weapon/death come from server records. Game code consumes
   /// <see cref="Framework"/> (or the events) and adds no netcode.</para>
   /// </summary>
@@ -209,8 +210,10 @@ namespace Ragon.Client.Unity
 
         if (IsLocal(slot) && _framework.Prediction.Initialized)
         {
-          // The local correction is already inside PredictionRunner; render it directly.
-          var state = _framework.Prediction.RenderState(1.0);
+          // Alpha is progress into the current prediction tick; the correction is already inside
+          // PredictionRunner, so passing 0..1 here interpolates between Previous and Current every
+          // frame instead of stepping once per 30 Hz tick.
+          var state = _framework.Prediction.RenderState(_framework.PredictionAlpha);
           ApplyPose(go.transform, state.Pos, state.Yaw, state.Pitch);
           if (go.activeSelf != _framework.Prediction.Alive)
             go.SetActive(_framework.Prediction.Alive);
@@ -257,7 +260,7 @@ namespace Ragon.Client.Unity
         if (!_npcs.TryGetValue(pair.Key, out var go) || go == null)
           continue;
 
-        var record = pair.Value.Current;
+        var record = pair.Value.RenderAt(_framework.Clock.RenderTick);
         ApplyPose(go.transform, record.Pos, record.Yaw, 0);
       }
     }
