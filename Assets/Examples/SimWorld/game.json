@@ -6,7 +6,7 @@
     "accelGround": 12.0,
     "accelAir": 2.5,
     "friction": 8.0,
-    "jumpSpeed": 6.5,
+    "jumpSpeed": 9.0,
     "gravity": 20.0,
     "radius": 0.4,
     "height": 1.8,

@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Examples/SimWorld/SimWorld.unity
+    guid: c8135f0b277242fcacc2a8e6b6a5e381
+  - enabled: 1
     path: Assets/Examples/SimFPS/SimFPS.unity
     guid: 22fd933600e64f9b80f5a26a06eaeb02
   m_configObjects: {}
