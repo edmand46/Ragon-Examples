@@ -1,4 +1,7 @@
-﻿using UnityEditor;
+// FILE:Editor/Property/RagonBoolDrawer.cs ROLE:read-only inspector drawer for replicated RagonBool values DEPS:RagonBool;UnityEditor
+// API:none
+
+using UnityEditor;
 using UnityEngine;
 
 namespace Ragon.Client.Unity.Property

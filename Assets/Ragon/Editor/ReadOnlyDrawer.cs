@@ -1,3 +1,6 @@
+// FILE:Editor/ReadOnlyDrawer.cs ROLE:draws [ReadOnly] fields disabled DEPS:Ragon.Runtime;UnityEditor
+// API:none
+
 using UnityEditor;
 using UnityEngine;
 

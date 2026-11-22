@@ -1,3 +1,6 @@
+// FILE:Runtime/Libraries/NativeWebSocket/WebSocket.cs ROLE:vendored NativeWebSocket (MIT) - re-vendor instead of editing DEPS:none
+// API:upstream public API
+
 using System;
 using System.Collections.Generic;
 using System.IO;

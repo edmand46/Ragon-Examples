@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+// FILE:Runtime/Sources/Properties/RagonFloat.cs ROLE:replicated compressed float property DEPS:Ragon.Client.Compressor;Ragon.Protocol
+// API:Value ; RagonFloat(value,min,max,precision,...)
+// WHY:min/max/precision define RequiredBits, so changing defaults changes the wire layout
+
 using System;
 using Ragon.Client.Compressor;
 using Ragon.Protocol;

@@ -1,3 +1,7 @@
+// FILE:Editor/RagonDefines.cs ROLE:keeps the RAGON_NETWORK scripting define present DEPS:UnityEditor
+// API:none
+// WHY:consumers guard Ragon integration behind RAGON_NETWORK; removing the define silently disables their code
+
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Build;

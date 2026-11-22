@@ -1,3 +1,6 @@
+// FILE:Editor/Builder/LauncherWindow.cs ROLE:editor window that launches editor + client processes DEPS:Builder;Runner;UnityEditor
+// API:none (menu item Services/Ragon/Launcher)
+
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;

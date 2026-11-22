@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+// FILE:Editor/RagonPrefabRegistryEditor.cs ROLE:inspector button that rescans prefabs into the registry DEPS:RagonPrefabRegistry;UnityEditor
+// API:none
+
 using UnityEditor;
 using UnityEngine;
 

@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+// FILE:Runtime/Sources/Utility/SceneRequest.cs ROLE:bridges Ragon scene requests to Unity scene loading DEPS:Ragon.Client;UnityEngine.SceneManagement
+// API:OnRequestScene() ; Dispose()
+// WHY:the server waits for Room.SceneLoaded(), so this listener must report completion for both cached and async-loaded scenes
+
 using System;
 using UnityEngine.SceneManagement;
 

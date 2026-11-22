@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+// FILE:Runtime/Sources/Properties/RagonInt.cs ROLE:replicated compressed int property DEPS:Ragon.Client.Compressor;Ragon.Protocol
+// API:Value
+// WHY:min/max define RequiredBits, so changing defaults changes the wire layout
+
 using System;
 using Ragon.Client.Compressor;
 using Ragon.Protocol;

@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+// FILE:Runtime/Sources/Properties/RagonBool.cs ROLE:replicated boolean property DEPS:Ragon.Client.RagonProperty;Ragon.Protocol
+// API:Value
+// WHY:fixed size 1 bit is part of the wire layout; keep it in sync with the server-side property size
+
 using System;
 using Ragon.Protocol;
 using UnityEngine;

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2023-2024 Eduard Kargin <kargin.eduard@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// FILE:Runtime/Sources/Log/RagonUnityLogger.cs ROLE:routes Ragon.Client logging into the Unity console DEPS:Ragon.Client.IRagonLogger;UnityEngine
+// API:Warn() ; Trace() ; Info() ; Error()
 
 using UnityEngine;
 

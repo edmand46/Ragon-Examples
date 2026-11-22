@@ -1,3 +1,7 @@
+// FILE:Editor/SceneBaker.cs ROLE:assigns static entity ids to scene RagonLinks before a scene is saved DEPS:RagonLink;UnityEditor
+// API:OnWillSaveAssets() ; GenerateSceneIds()
+// WHY:scene entity ids are the server-side static entity keys; regenerating them on every save is intentional so ordering stays deterministic
+
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;

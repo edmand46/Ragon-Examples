@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+// FILE:Runtime/Sources/Properties/RagonVector3.cs ROLE:replicated axis-masked compressed vector property DEPS:Ragon.Client.Compressor;Ragon.Protocol
+// API:Value ; RagonAxis
+// WHY:RagonAxis selector decides which axes appear on the wire; keep enum order and axis masks stable
+
 using System;
 using Ragon.Client.Compressor;
 using Ragon.Protocol;

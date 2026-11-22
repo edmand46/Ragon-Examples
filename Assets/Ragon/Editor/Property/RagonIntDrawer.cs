@@ -1,4 +1,7 @@
-﻿using UnityEditor;
+// FILE:Editor/Property/RagonIntDrawer.cs ROLE:read-only inspector drawer for replicated RagonInt values DEPS:RagonInt;UnityEditor
+// API:none
+
+using UnityEditor;
 using UnityEngine;
 
 namespace Ragon.Client.Unity.Property

@@ -1,9 +1,7 @@
 {
     "name": "Ragon.Runtime",
     "rootNamespace": "",
-    "references": [
-        "Fusumity"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": true,

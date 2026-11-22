@@ -1,3 +1,6 @@
+// FILE:Editor/Builder/Builder.cs ROLE:editor build helper for local multiplayer test clients DEPS:UnityEditor
+// API:Build() ; BuildClientMacOnly() ; BuildClientWinOnly()
+
 #if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;

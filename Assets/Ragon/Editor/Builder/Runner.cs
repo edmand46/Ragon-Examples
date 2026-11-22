@@ -1,3 +1,6 @@
+// FILE:Editor/Builder/Runner.cs ROLE:spawns built client processes for local multiplayer testing DEPS:Builder;UnityEditor
+// API:RunEditorAndClients() ; RunClients()
+
 #if UNITY_EDITOR
 using System.IO;
 using UnityEditor;

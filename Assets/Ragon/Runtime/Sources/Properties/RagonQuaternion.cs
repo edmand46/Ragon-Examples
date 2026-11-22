@@ -1,3 +1,7 @@
+// FILE:Runtime/Sources/Properties/RagonQuaternion.cs ROLE:replicated quaternion property (four compressed floats) DEPS:Ragon.Client.Compressor;Ragon.Protocol
+// API:Value
+// WHY:component order x,y,z,w and the -1..1 compressor are the wire contract
+
 using Ragon.Client.Compressor;
 using Ragon.Protocol;
 using UnityEngine;

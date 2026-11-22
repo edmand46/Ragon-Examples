@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+// FILE:Runtime/Sources/Utility/LimitedQueue.cs ROLE:bounded FIFO used by transform interpolation buffers DEPS:none
+// API:Enqueue() ; Limit
+
 using System.Collections.Generic;
 
 namespace Ragon.Client.Utility

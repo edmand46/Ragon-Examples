@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2023-2024 Eduard Kargin <kargin.eduard@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
+// FILE:Runtime/Sources/Component/Info/RagonFloatPropertyInfo.cs ROLE:per-axis compressor tuning for RagonTransformComponent DEPS:none
+// API:Min,Max,Precision,Bits
+// WHY:Bits is computed from Min/Max/Precision in OnValidate; it must stay 14+ bits wide enough for the server's property size limit
+
 using System;
-using Fusumity.Attributes.Specific;
 using UnityEngine;
 
 namespace Ragon.Client.Unity

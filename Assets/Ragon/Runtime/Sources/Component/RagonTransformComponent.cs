@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2023-2024 Eduard Kargin <kargin.eduard@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,9 +14,12 @@
  * limitations under the License.
  */
 
+// FILE:Runtime/Sources/Component/RagonTransformComponent.cs ROLE:built-in transform replication behaviour DEPS:RagonBehaviour;RagonFloatPropertyInfo;Ragon.Client.Compressor
+// API:SetTarget() ; OnDiscovery() ; OnUpdateEntity() ; OnUpdateProxy()
+// WHY:discovery order is rotation, position, scale and the per-axis bit counts come from RagonFloatPropertyInfo; both define the wire layout
+
 using System;
 using System.Collections.Generic;
-using Fusumity.Attributes.Specific;
 using Ragon.Client.Compressor;
 using Ragon.Client.Utility;
 using UnityEngine;

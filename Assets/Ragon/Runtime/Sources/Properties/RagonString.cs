@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+// FILE:Runtime/Sources/Properties/RagonString.cs ROLE:replicated UTF-8 string property DEPS:Ragon.Protocol
+// API:Value
+// WHY:length prefix is 16 bits; max length must stay within that prefix
+
 using System;
 using System.Text;
 using Ragon.Protocol;
