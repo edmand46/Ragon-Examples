@@ -94,14 +94,18 @@ namespace Examples.SimWorld
       var store = _view.Store;
       var chunks = store != null ? store.ReceivedCount : 0;
       var total = store != null ? store.ChunkCount : 0;
+      var halo = store != null ? store.HaloReceivedCount : 0;
+      var haloTotal = store != null ? store.HaloChunkCount : 0;
       var predicted = store != null ? store.PredictedEditCount : 0;
       var migrating = _view.IsMigrating ? " | migrating" : "";
+      var haloText = haloTotal > 0 ? string.Format(" + halo {0}/{1}", halo, haloTotal) : "";
 
       return string.Format(
-        "SimWorld | {0} | chunks {1}/{2}{3} | edits {4} | FPS {5:0} | LMB build | RMB remove",
+        "SimWorld | {0} | chunks {1}/{2}{3}{4} | edits {5} | FPS {6:0} | LMB build | RMB remove",
         region.RegionId,
         chunks,
         total,
+        haloText,
         migrating,
         predicted,
         _fps);
