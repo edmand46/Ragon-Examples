@@ -421,7 +421,6 @@ namespace Ragon.Client.Unity
     public void OnDisconnected(RagonClient client, RagonDisconnect reason) { }
     public void OnFailed(RagonClient client, string message) { }
     public void OnLeft(RagonClient client) { }
-    public void OnOwnershipChanged(RagonClient client, RagonPlayer player) { }
     public void OnPlayerJoined(RagonClient client, RagonPlayer player) { }
     public void OnPlayerLeft(RagonClient client, RagonPlayer player) { }
     public void OnSceneLoaded(RagonClient client) { }

@@ -66,9 +66,6 @@ namespace Ragon.Client.Unity
           break;
         }
       }
-      
-      _client.Configure(new EmptyEntityListener());
-      _client.Configure(new EmptySceneCollector());
     }
 
     
